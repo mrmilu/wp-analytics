@@ -77,7 +77,8 @@ var WPAnalytics = function () {
   };
 
   this.trackEventGA = function(data) {
-    // @TODO - Pending
+    data['hitType'] = 'event';
+    ga('send', data);
   };
 
   this.trackEventConsole = function(data) {
