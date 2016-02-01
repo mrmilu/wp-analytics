@@ -72,18 +72,19 @@ var AEBlur = function(WPAnalytics) {
 var WPAnalytics = function () {
   var that = this;
 
-  this.trackGTMEvent = function(data) {
+  this.trackEventGTM = function(data) {
     dataLayer.push(data);
   };
 
-  this.trackGAEvent = function(data) {
+  this.trackEventGA = function(data) {
+    // @TODO - Pending
   };
 
-  this.consoleLog = function(data) {
+  this.trackEventConsole = function(data) {
     console.log(data);
   };
 
-  this.trackEvent = this.trackGTMEvent;
+  this.trackEvent = this.trackEventGTM;
   this.$get = [function() {
     return new function() {
       var service = {};
