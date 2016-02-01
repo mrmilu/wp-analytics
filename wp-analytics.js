@@ -18,7 +18,7 @@ var AEChange = function(WPAnalytics) {
     require: 'ngModel',
     link: function(scope, element, attrs, ngModelCtrl) {
       ngModelCtrl.$viewChangeListeners.push(function() {
-        if ('aeOnlyValid' in attrs && ngModelCtrl.$invalid) return;
+        if ('aeValidOnly' in attrs && ngModelCtrl.$invalid) return;
 
         var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
         if (!('aePreventValue' in attrs)) data['value'] = ngModelCtrl.$viewValue;
@@ -39,7 +39,7 @@ var AEForm = function(WPAnalytics) {
       scope.$watch(function() {
         return formCtrl.$valid;
       }, function(validity) {
-        if ('aeOnlyValid' in attrs && formCtrl.$invalid) return;
+        if ('aeValidOnly' in attrs && formCtrl.$invalid) return;
 
         var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
         data['validation'] = formCtrl.$valid ? 'valid' : 'invalid';
@@ -55,7 +55,7 @@ var AEBlur = function(WPAnalytics) {
     require: 'ngModel',
     link: function(scope, element, attrs, ngModelCtrl) {
       element.blur(function() {
-        if ('aeOnlyValid' in attrs && ngModelCtrl.$invalid) return;
+        if ('aeValidOnly' in attrs && ngModelCtrl.$invalid) return;
 
         var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
         if (!('aePreventValue' in attrs)) data['value'] = ngModelCtrl.$viewValue;
