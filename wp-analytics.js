@@ -21,7 +21,7 @@ var AEChange = function(WPAnalytics) {
         if ('aeValidOnly' in attrs && ngModelCtrl.$invalid) return;
 
         var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
-        if (!('aePreventValue' in attrs)) data['value'] = ngModelCtrl.$viewValue;
+        if (!('aeValueSkip' in attrs)) data['value'] = ngModelCtrl.$viewValue;
 
         data['validation'] = ngModelCtrl.$valid ? 'valid' : 'invalid';
         WPAnalytics.trackEvent(data);
@@ -58,7 +58,7 @@ var AEBlur = function(WPAnalytics) {
         if ('aeValidOnly' in attrs && ngModelCtrl.$invalid) return;
 
         var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
-        if (!('aePreventValue' in attrs)) data['value'] = ngModelCtrl.$viewValue;
+        if (!('aeValueSkip' in attrs)) data['value'] = ngModelCtrl.$viewValue;
 
         data['validation'] = ngModelCtrl.$valid ? 'valid' : 'invalid';
         WPAnalytics.trackEvent(data, attrs)
