@@ -5,7 +5,7 @@ var AEClick = function(WPAnalytics) {
     restrict: 'A',
     link: function(scope, element, attrs) {
       element.click(function() {
-        var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
+        var data = attrs.aeClick != '' ? scope.$eval(attrs.aeClick) : {};
         WPAnalytics.trackEvent(data);
       });
     }
@@ -20,7 +20,7 @@ var AEChange = function(WPAnalytics) {
       ngModelCtrl.$viewChangeListeners.push(function() {
         if ('aeValidOnly' in attrs && ngModelCtrl.$invalid) return;
 
-        var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
+        var data = attrs.aeChange != '' ? scope.$eval(attrs.aeChange) : {};
         if (!('aeValueSkip' in attrs)) data['value'] = ngModelCtrl.$viewValue;
 
         data['validation'] = ngModelCtrl.$valid ? 'valid' : 'invalid';
@@ -41,7 +41,7 @@ var AEForm = function(WPAnalytics) {
       }, function(validity) {
         if ('aeValidOnly' in attrs && formCtrl.$invalid) return;
 
-        var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
+        var data = attrs.aeForm != '' ? scope.$eval(attrs.aeForm) : {};
         data['validation'] = formCtrl.$valid ? 'valid' : 'invalid';
         WPAnalytics.trackEvent(data);
       });
@@ -57,7 +57,7 @@ var AEBlur = function(WPAnalytics) {
       element.blur(function() {
         if ('aeValidOnly' in attrs && ngModelCtrl.$invalid) return;
 
-        var data = 'aeData' in attrs ? scope.$eval(attrs.aeData) : {};
+        var data = 'aeBlur' in attrs ? scope.$eval(attrs.aeBlur) : {};
         if (!('aeValueSkip' in attrs)) data['value'] = ngModelCtrl.$viewValue;
 
         data['validation'] = ngModelCtrl.$valid ? 'valid' : 'invalid';
